@@ -13,6 +13,11 @@ task :default do
 end
 
 namespace :site do
+  desc "Run the site locally"
+  task :run do
+    system "jekyll server --watch"
+  end
+
   desc "Generate blog files"
   task :generate do
     Jekyll::Site.new(Jekyll.configuration({
