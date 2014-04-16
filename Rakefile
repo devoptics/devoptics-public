@@ -15,7 +15,7 @@ end
 namespace :site do
   desc "Run the site locally"
   task :run do
-    system "jekyll server --watch"
+    sh "jekyll serve --watch"
   end
 
   desc "Generate blog files"
