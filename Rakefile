@@ -6,7 +6,7 @@ require "jekyll"
 
 
 # Change your GitHub reponame eg. "kippt/jekyll-incorporated"
-GITHUB_REPONAME = "timgifford/devoptics-public"
+GITHUB_REPONAME = "devoptics/devoptics-public"
 
 task :default do
   system "rake --tasks"
