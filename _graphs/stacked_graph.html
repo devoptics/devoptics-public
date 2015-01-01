@@ -1,0 +1,145 @@
+<!doctype html>
+<link type="text/css" rel="stylesheet" href="css/graph.css">
+<link type="text/css" rel="stylesheet" href="css/legend.css">
+<style>
+div, span, p, td {
+	font-family: Arial, sans-serif;
+}
+#chart {
+	display: inline-block;
+}
+#legend {
+	display: inline-block;
+	position: relative;
+	left: 8px;
+}
+#legend_container {
+	position: absolute;
+	right: 0;
+	bottom: 26px;
+	width: 0;
+}
+#chart_container {
+	float: left;
+	position: relative;
+}
+
+</style>
+<script src="js/vendor/d3.v2.js"></script>
+<script src="js/rickshaw.min.js"></script> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+
+
+<div id="chart_container">
+        <div id="x_axis"></div>
+        <div id="y_axis"></div>
+        <div id="chart"></div>
+        <div id="legend_container">
+          <div id="smoother" title="Smoothing"></div>
+          <div id="legend"></div>
+        </div>
+  <div id="slider"></div>
+
+</div>
+
+<script>
+
+var graph = new Rickshaw.Graph( {
+	element: document.querySelector("#chart"),
+	width: 800,
+	height: 400,
+	renderer: 'bar',
+	series: [ 
+		{
+      name: 'Failing',
+			data: [ 
+        { x: 0, y: 1 }, 
+        { x: 1, y: 0 }, 
+        { x: 2, y: 0 }, 
+        { x: 3, y: 1 }, 
+        { x: 4, y: 0 },
+        { x: 5, y: 1 }, 
+        { x: 6, y: 0 }, 
+        { x: 7, y: 0 }, 
+        { x: 8, y: 1 }, 
+        { x: 9, y: 0 }, 
+        { x: 10, y: 5 }, 
+        { x: 11, y: 5 }, 
+        { x: 12, y: 5 }, 
+        { x: 13, y: 10 }, 
+        { x: 14, y: 10 },
+        { x: 15, y: 10 }, 
+        { x: 16, y: 10 }, 
+        { x: 17, y: 0 }, 
+        { x: 18, y: 0 }, 
+        { x: 19, y: 0 } 
+      ],
+			color: 'red'
+		},
+    {
+      name: 'Passing',
+			data: [ 
+        { x: 0, y: 49}, 
+        { x: 1, y: 50}, 
+        { x: 2, y: 50 }, 
+        { x: 3, y: 49 }, 
+        { x: 4, y: 50 },
+        { x: 5, y: 49 }, 
+        { x: 6, y: 50 }, 
+        { x: 7, y: 50 }, 
+        { x: 8, y: 49 }, 
+        { x: 9, y: 50 }, 
+        { x: 10, y: 45}, 
+        { x: 11, y: 45}, 
+        { x: 12, y: 45 }, 
+        { x: 13, y: 40 }, 
+        { x: 14, y: 40 },
+        { x: 15, y: 40 }, 
+        { x: 16, y: 40 }, 
+        { x: 17, y: 50 }, 
+        { x: 18, y: 50 }, 
+        { x: 19, y: 50 } 
+      ],
+			color: 'green'
+    }
+  ]
+} );
+
+graph.render();
+
+var yaxis = new Rickshaw.Graph.Axis.Y({
+    graph: graph
+});
+
+yaxis.render();
+
+var xaxis = new Rickshaw.Graph.Axis.Time({
+    graph: graph
+});
+
+//xaxis.render();
+
+var legend = new Rickshaw.Graph.Legend( {
+	graph: graph,
+	element: document.getElementById('legend')
+
+} );
+
+var shelving = new Rickshaw.Graph.Behavior.Series.Toggle( {
+	graph: graph,
+	legend: legend
+} );
+var order = new Rickshaw.Graph.Behavior.Series.Order( {
+	graph: graph,
+	legend: legend
+} );
+
+var highlight = new Rickshaw.Graph.Behavior.Series.Highlight( {
+	graph: graph,
+	legend: legend
+} );
+
+</script>
+
+
